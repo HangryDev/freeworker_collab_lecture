@@ -1,0 +1,11 @@
+{
+  "name": "gyeolai-freeworking-landing",
+  "version": "1.0.0",
+  "description": "결AI × 프리워킹 static landing page",
+  "scripts": {
+    "start": "serve -s . -l ${PORT:-3000}"
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}

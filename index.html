@@ -6,6 +6,7 @@
     <title>결AI × 프리워킹 — 프리워커를 위한 AI 클래스</title>
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; }
         * { margin: 0; padding: 0; }
@@ -127,6 +128,89 @@
         @keyframes pulse-anim {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        /* ── Automation Carousel ── */
+        .automation-carousel {
+            margin-top: 3rem;
+            position: relative;
+        }
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 1.25rem;
+            transition: transform 0.5s ease-out;
+        }
+        .carousel-item {
+            flex: 0 0 calc(25% - 0.9375rem);
+            min-width: 0;
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid var(--mid-blue);
+            text-align: center;
+        }
+        @media (max-width: 767px) {
+            .carousel-item { flex: 0 0 calc(50% - 0.625rem); }
+        }
+        .carousel-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .carousel-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+        .carousel-nav {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1.25rem;
+        }
+        .carousel-nav-btn {
+            width: 2.5rem; height: 2.5rem;
+            border-radius: 50%;
+            border: 1px solid var(--mid-blue);
+            background: var(--bg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--primary);
+            transition: all 0.2s;
+        }
+        .carousel-nav-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+        .carousel-nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        @media (max-width: 767px) {
+            .carousel-item { flex: 0 0 calc(50% - 0.625rem); }
+        }
+
+        /* ── Timeline Improvements ── */
+        .course-section-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            opacity: 0.6;
+        }
+        .course-section-title:first-child {
+            margin-top: 0;
         }
 
         /* ── Hero ── */
@@ -252,7 +336,6 @@
         }
         @media (min-width: 768px) { .timeline-dot { display: flex; } }
 
-        .text-col-left { }
         @media (min-width: 768px) {
             .text-col-left { text-align: right; padding-right: 2.5rem; }
             .text-col-right { padding-left: 2.5rem; order: 2; }
@@ -286,17 +369,47 @@
         .img-col img { width: 100%; height: auto; display: block; }
 
         /* ── Instructor ── */
-        #instructor { }
-        .instructor-grid { display: grid; gap: 2.5rem; align-items: start; }
-        @media (min-width: 768px) { .instructor-grid { grid-template-columns: 180px 1fr; } }
+        .instructor-grid { display: grid; gap: 2.5rem; align-items: center; }
+        @media (min-width: 768px) { .instructor-grid { grid-template-columns: 240px 1fr; } }
         .instructor-photo {
-            width: 180px; height: 180px;
+            width: 240px; height: 320px;
             border-radius: 1rem; object-fit: cover;
             border: 2px solid var(--mid-blue);
         }
         .instructor-name { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; }
         .instructor-role { font-size: 0.875rem; font-weight: 600; color: var(--accent); margin-bottom: 1rem; }
         .instructor-bio { font-size: 0.875rem; line-height: 1.8; margin-bottom: 1.5rem; max-width: 560px; }
+
+        /* ── Client Logo Grid ── */
+        .client-label {
+            font-size: 0.65rem;
+            color: var(--mid-blue);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .client-logos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+        .client-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.6rem 0.75rem;
+            background: #f0f7ff;
+            border: 1px solid var(--mid-blue);
+            border-radius: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            min-height: 2.5rem;
+        }
+        .client-logo.lg {
+            grid-column: span 2;
+        }
 
         /* ── Testimonials ── */
         #testimonials { background: var(--primary); color: #fff; }
@@ -316,16 +429,17 @@
         /* ── Registration ── */
         #register { text-align: center; }
         .form-card {
-            background: var(--primary); color: #fff;
+            background: #fff; color: var(--primary);
             border-radius: 1.5rem; padding: 3rem 2.5rem;
             margin-top: 2.5rem; text-align: left;
+            border: 1px solid var(--mid-blue);
         }
         .form-badge {
             display: inline-block;
             font-size: 0.7rem; font-weight: 700;
             letter-spacing: 0.1em; text-transform: uppercase;
             padding: 0.25rem 1rem; border-radius: 999px;
-            background: #1a3a1a; color: #5ddd5d; margin-bottom: 1rem;
+            background: var(--light-blue); color: var(--primary); margin-bottom: 1rem;
         }
         .form-title { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 700; line-height: 1.4; margin-bottom: 0.5rem; }
         .form-subtitle { font-size: 0.875rem; color: var(--mid-blue); margin-bottom: 2rem; }
@@ -365,7 +479,7 @@
 ══════════════════════════════ -->
 <header>
     <a href="#" class="logo">결AI × 프리워킹</a>
-    <a href="#register" class="btn-primary btn-sm">무료 웨비나 등록 →</a>
+    <a href="https://tally.so/r/RGvrvQ" target="_blank" class="btn-primary btn-sm">무료 웨비나 등록 →</a>
 </header>
 
 
@@ -380,14 +494,14 @@
         </div>
 
         <h1>
-            프리워커의 반복 업무를<br>
-            AI가 대신하게 만드는 데<br>
-            <span class="accent">30일이면 충분합니다</span>
+            <span class="accent">30일이면 충분합니다</span><br>
+            내가 퇴근해도 계속 일하는 <br>
+            AI 직원을 만드세요<br>
         </h1>
 
         <p class="subtitle">
-            코딩 없이, 개발자 없이, AI와 운영하는 회사 만들기<br>
-            이메일·SNS·데이터 정리 자동화부터 기획·콘텐츠 템플릿까지 — 생산성 2배 이상.
+            코딩 없이, 개발자 없이, AI가 운영 해주는 회사로 나아가기<br>
+            
         </p>
 
         <div class="collab-note">
@@ -397,7 +511,7 @@
 
         <div class="callout">
             <strong>단, 진짜 비결이 있습니다.</strong>
-            <p>AI를 제대로 부리려면 — 당신이 먼저 스마트해져야 합니다.<br>그게 이 커리큘럼의 핵심입니다.</p>
+            <p>AI 직원을 제대로 부리려면 당신의 'AI 경영학' 일머리를 키워야 합니다.<br>그게 이 커리큘럼의 핵심입니다.</p>
         </div>
 
         <div class="stats">
@@ -410,12 +524,12 @@
                 <div class="stat-label">평균 만족도</div>
             </div>
             <div>
-                <div class="stat-num">30일</div>
+                <div class="stat-num">4시간</div>
                 <div class="stat-label">첫 AI 워크플로우 완성</div>
             </div>
         </div>
 
-        <a href="#register" class="btn-primary">무료 웨비나 등록하기 →</a>
+        <a href="https://tally.so/r/RGvrvQ" target="_blank" class="btn-primary">무료 웨비나 등록하기 →</a>
         <p class="btn-note">무료 · 라이브 + 다시보기 제공 · 일시 추후 공지</p>
     </div>
 </section>
@@ -430,8 +544,8 @@
     <div class="container">
         <p class="section-label">수강 전 vs 후</p>
         <h2>
-            지금 당신은 AI에게 하나하나 지시하고 있습니다.<br>
-            우리 수강생들은 AI가 알아서 처리하게 만듭니다.
+            AI에게 하나하나 지시하고 있나요? <br>
+            이제 알아서 처리하게 만들어 봅시다
         </h2>
         <p style="margin-bottom: 3rem;">'도구'의 차이를 초월하는 '사고방식'의 차이를 만나보세요</p>
 
@@ -451,10 +565,110 @@
                 <ul class="check-list check">
                     <li>한번 설계한 워크플로우가 자동으로 실행</li>
                     <li>반복 업무(이메일·SNS·보고서)를 AI가 처리</li>
-                    <li>기획·콘텐츠 템플릿으로 생산성 2배 이상</li>
+                    <li>각종 템플릿으로 생산성 2배 이상</li>
                     <li>툴이 바뀌어도 흔들리지 않는 설계 능력</li>
                     <li>내가 없어도 AI 시스템이 일하는 중</li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- Automation Carousel -->
+        <div class="automation-carousel">
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">smart_toy</span>
+                        <div class="carousel-title">AI 챗봇 고객 응대</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">video_library</span>
+                        <div class="carousel-title">쇼츠 자동 생성</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">email</span>
+                        <div class="carousel-title">이메일 트리아지</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">auto_awesome</span>
+                        <div class="carousel-title">콘텐츠 마케팅 자동화</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">person_search</span>
+                        <div class="carousel-title">리드 자동 수집</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">mic</span>
+                        <div class="carousel-title">회의록 자동 작성</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">description</span>
+                        <div class="carousel-title">문서 데이터 추출</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">campaign</span>
+                        <div class="carousel-title">SNS 스케줄링</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">trending_up</span>
+                        <div class="carousel-title">SEO 자동 최적화</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">receipt_long</span>
+                        <div class="carousel-title">세금 처리 자동화</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">contacts</span>
+                        <div class="carousel-title">CRM 자동 업데이트</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">event_available</span>
+                        <div class="carousel-title">예약 자동 잡기</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">mail</span>
+                        <div class="carousel-title">뉴스레터 자동 발송</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">article</span>
+                        <div class="carousel-title">블로그 글 자동 생성</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">picture_as_pdf</span>
+                        <div class="carousel-title">PDF 분석 및 요약</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">gavel</span>
+                        <div class="carousel-title">계약서 검토</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">play_circle</span>
+                        <div class="carousel-title">유튜브 대본 생성</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">shopping_cart</span>
+                        <div class="carousel-title">상품 설명 자동 생성</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">receipt</span>
+                        <div class="carousel-title">영수증 자동 분류</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">savings</span>
+                        <div class="carousel-title">세금 공제 항목 추천</div>
+                    </div>
+                    <div class="carousel-item">
+                        <span class="carousel-icon material-icons-outlined">account_balance_wallet</span>
+                        <div class="carousel-title">경비처리 자동화</div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-nav-btn" id="prevBtn">
+                    <span class="material-icons-outlined" style="font-size: 1.25rem;">chevron_left</span>
+                </button>
+                <button class="carousel-nav-btn" id="nextBtn">
+                    <span class="material-icons-outlined" style="font-size: 1.25rem;">chevron_right</span>
+                </button>
             </div>
         </div>
     </div>
@@ -527,7 +741,7 @@
                     <p>📺 라이브 + 다시보기 제공</p>
                 </div>
 
-                <a href="#register" class="btn-primary" style="margin-top: 1.75rem; display: inline-block;">
+                <a href="https://tally.so/r/RGvrvQ" target="_blank" class="btn-primary" style="margin-top: 1.75rem; display: inline-block;">
                     지금 등록하기 →
                 </a>
             </div>
@@ -557,7 +771,9 @@
                 <div class="text-col-left">
                     <div class="level-label">LEVEL 101</div>
                     <h3 class="course-title">제철 AI: 내 컴퓨터에 취직한 에이전트</h3>
+                    <div class="course-section-title">학습 내용</div>
                     <div class="course-desc">내 컴퓨터에 상주하는 AI 에이전트를 처음으로 만납니다. 현 시점 '예술의 경지'인 최신 도구들을 살펴봅니다.<br><br>• 아홉살도 쓸 수 있습니다<br>• 배우는 데 각각 10분이면 충분합니다<br>• 가성비 MAX 밸류 팩</div>
+                    <div class="course-section-title">달라지는 점</div>
                     <div class="course-outcome">클로드 코워크가 내 컴퓨터의 문서/파일에 바로 작업이 가능합니다.<br><br>• 상황별로 무슨 AI 툴을 쓰면 되는지 파악<br>• 새로운 도구가 나와도 위축되지 않는 자신감</div>
                 </div>
                 <div class="img-col">
@@ -573,8 +789,10 @@
                 </div>
                 <div class="text-col-right">
                     <div class="level-label">LEVEL 201</div>
-                    <h3 class="course-title">일 잘하는 사람의 AI 사용법: 고퀄리티를 뽑는 공통 기술</h3>
+                    <h3 class="course-title">일 잘하는 사람의 AI 사용법: <br> 고퀄리티를 뽑는 공통 기술</h3>
+                    <div class="course-section-title">학습 내용</div>
                     <div class="course-desc">AI를 쓰는 사람은 많아졌지만, 결과물의 품질 차이는 오히려 더 벌어지고 있습니다.<br><br>• AI에게 단순히 지시하는 것을 넘어<br>• AI와 함께 사고하고<br>• 진정한 의미의 협업 방법을 배웁니다.</div>
+                    <div class="course-section-title">달라지는 점</div>
                     <div class="course-outcome">리서치·글쓰기·기획·분석 워크플로우를 AI 협업형으로 재구성하고:<br>• 사고를 확장하고<br>• 품질을 끌어올리는 협업 파트너로 활용하는<br>• 메타스킬을 배우게 됩니다.</div>
                 </div>
             </div>
@@ -585,7 +803,9 @@
                 <div class="text-col-left">
                     <div class="level-label">LEVEL 301</div>
                     <h3 class="course-title">프리워커도 쉽게 하는 AI 에이전트 세팅</h3>
+                    <div class="course-section-title">학습 내용</div>
                     <div class="course-desc">잘 훈련된 직원은 매번 지시하지 않아도 됩니다. AI도 그렇게 만들 수 있습니다.<br><br>• 나 없이도 AI가 일하게 만들고<br>• 내가 없어도 돌아가는 시스템을 설계합니다.</div>
+                    <div class="course-section-title">달라지는 점</div>
                     <div class="course-outcome">당신은 에이전트 제작자가 됩니다.<br><br>AI가 일하고 있다는 게 어떤 느낌인지 — 직접 경험하게 됩니다.</div>
                 </div>
                 <div class="img-col">
@@ -593,34 +813,19 @@
                 </div>
             </div>
 
-            <!-- LEVEL 401 -->
+            <!-- AFTER: 심화 전문가 과정 -->
             <div class="timeline-item">
-                <div class="timeline-dot">401</div>
-                <div class="img-col img-col-right">
-                    <img src="https://i.imgur.com/V9oOKdh.jpg" alt="401 강의 일러스트레이션">
+                <div class="level-label">LEVEL 401, 501</div>
+                <h3 class="course-title">더 크고 싶은 당신을 위한 <br> 30일 이후의 전문가 과정</h3>
+                <div class="timeline-dot">이후</div>
+                <div class="img-col img-col-right" >
+                    <img src="https://i.imgur.com/vivLwBj.jpg" alt="심화 과정 강의 일러스트레이션">
                 </div>
-                <div class="text-col-right">
-                    <div class="level-label">LEVEL 401</div>
-                    <h3 class="course-title">나를 우려내기: 내 전문성을 AI에 주입</h3>
-                    <div class="course-desc">내 업의 감각이 스며든 AI를 만드는 단계입니다.<br><br>에이전트에 전수하는 것:<br>• 나만의 지식과 통찰<br>• 내가 중요하게 여기는 기준<br>• 나의 판단 방식</div>
-                    <div class="course-outcome">내 경험과 판단 기준이 담긴 일 잘하는 AI 시스템을 갖게 됩니다.<br><br>• 디지털 트윈 — 나를 복제한 일꾼의 초석<br>• 에이전틱 프리랜싱을 위한 기본기</div>
+                <div class="img-col" style="display: block;">
+                    <img src="https://i.imgur.com/V9oOKdh.jpg" alt="심화 과정 강의 일러스트레이션">
                 </div>
-            </div>
 
-            <!-- LEVEL 501 -->
-            <div class="timeline-item">
-                <div class="timeline-dot">501</div>
-                <div class="text-col-left">
-                    <div class="level-label">LEVEL 501</div>
-                    <h3 class="course-title">AI와 함께 코드 읽고 고치기: 나만의 프로그램 만들기까지</h3>
-                    <div class="course-desc">AI와 함께 소프트웨어를 읽고, 고치고, 확장하는 방법을 배웁니다.<br><br>• 고장난 부분을 AI와 함께 추적하기 (디버깅)<br>• 내가 원하는 프로그램을 정확히 설명하기<br>• 새로운 에이전트가 일할 공간을 열어주고 운영하기</div>
-                    <div class="course-outcome">나만의 AI OS를 설립하고 운영하는 감각을 갖게 됩니다.<br><br>새로운 에이전트와 워크플로우를 끝없이 확장할 수 있게 됩니다.</div>
-                </div>
-                <div class="img-col">
-                    <img src="https://i.imgur.com/vivLwBj.jpg" alt="501 강의 일러스트레이션">
-                </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -631,33 +836,22 @@
 ══════════════════════════════ -->
 <section id="instructor">
     <div class="container">
-        <p class="section-label">강사 소개</p>
-        <h2 style="margin-bottom: 3rem;">만든 사람</h2>
+        <p class="section-label">about</p>
+        <h2 style="margin-bottom: 3rem;">정한결</h2>
 
         <div class="instructor-grid">
             <img src="https://i.imgur.com/2SUvWiu.jpg" alt="정한결 프로필 사진" class="instructor-photo">
             <div>
-                <div class="instructor-name">정한결</div>
-                <div class="instructor-role">개발자, 강사, 대표</div>
+                
+                <div class="instructor-role">개발자, 강사, 커뮤니티 빌더, 결AI 대표</div>
                 <p class="instructor-bio">
-                    지금 AI 판에서는 자고 일어나면 새로운 일이 가능해져 있고, 더 강력하고 간편한 도구들이 매일 쏟아져 나옵니다. "결AI"는 '바로 쓸 수 있게 무르익은' 제철인 기술 &amp; 사용 사례를 선별하여 차려 놓고 어떻게 떠 먹으면 되는지를 보여드립니다. 수강생들은 클릭 몇 번에 마법처럼 자동으로 돌아가는 결과를 만들며 반하게 되고, 가만 냅둬도 스스로 찾아다니고 업그레이드 하려는 마음이 들게끔, 그 최초의 문턱을 넘게 도와드립니다.
-                    <br><br>
-                    주요 강의 활동: LG전자 · KOICA · ETRI · 서울시민대학 · 서울50+재단 · 모두의연구소
+                    문과 출신의 개발자입니다. 저는 지금 여러분이 하고 싶어하는 이런 자동화를 해 보고 싶어, 독학으로 개발과 AI를 공부해 고전적인 머신 러닝 엔지니어로 커리어를 시작했습니다. 실무로 개발을 배우며 방송대에서 컴퓨터과학/데이터과학 학사를 취득했고, Georgia Tech의 CS/ML 과정에 재학하기까지, 그리고 에이전트 개발자로 1인 회사의 대표가 되기까지 수 많은 어려움이 있었습니다. 꾸준히 배워오며 쌓은 경험과 고민이 제게 있습니다. <br> 
+                    <br>
+                    이 경험을 통해 어떤 건 몰라도 되고 무엇에 집중해야 하는지를 알게 되었습니다. 비전공자, 개발자 아닌 사람의 눈높이에 맞추어 알려드리고 있습니다. <br>                  
+                    <br>
+                    지금 AI 판에서는 자고 일어나면 새로운 일이 가능해져 있고, 더 강력하고 간편한 도구들이 매일 쏟아져 나옵니다. "결AI"는 '바로 쓸 수 있게 무르익은' 제철인 기술 사용 사례를 선별하여 차려 놓고 어떻게 떠 먹으면 되는지를 보여드립니다. 수강생들은 클릭 몇 번에 마법처럼 자동으로 돌아가는 결과를 만들며 반하게 되고, 가만 냅둬도 스스로 찾아다니고 업그레이드 하려는 마음이 듭니다. 그 최초의 문턱을 넘게 도와드립니다.
+
                 </p>
-                <div class="stats">
-                    <div>
-                        <div class="stat-num">1,000+</div>
-                        <div class="stat-label" style="font-size: 0.75rem;">결AI 수강생</div>
-                    </div>
-                    <div>
-                        <div class="stat-num">4.7★</div>
-                        <div class="stat-label" style="font-size: 0.75rem;">평균 만족도</div>
-                    </div>
-                    <div>
-                        <div class="stat-num">101~501</div>
-                        <div class="stat-label" style="font-size: 0.75rem;">전체 커리큘럼</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -669,7 +863,7 @@
 ══════════════════════════════ -->
 <section id="testimonials">
     <div class="container">
-        <p class="section-label section-label-light">수강생 후기</p>
+        <p class="section-label section-label-light">수강생 후기 / 출강 기업</p>
         <h2 style="color: #fff; margin-bottom: 0.75rem;">1,000명이 먼저 경험했습니다</h2>
         <p style="color: var(--mid-blue); margin-bottom: 3rem;">실제 수강생들의 이야기입니다.</p>
 
@@ -700,10 +894,16 @@
                 <div class="stat-lg-num">4.7 / 5.0</div>
                 <div class="stat-lg-label">평균 만족도</div>
             </div>
-            <div style="text-align: center;">
-                <div class="stat-lg-num">101~501</div>
-                <div class="stat-lg-label">완결 커리큘럼</div>
-            </div>
+        </div>
+
+        <div class="client-label" style="color: var(--mid-blue); margin-top: 3rem;">출강 기업</div>
+        <div class="client-logos">
+            <div class="client-logo" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">LG전자</div>
+            <div class="client-logo" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">KOICA</div>
+            <div class="client-logo" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">ETRI</div>
+            <div class="client-logo" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">서울시민대학</div>
+            <div class="client-logo" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">서울50+재단</div>
+            <div class="client-logo" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: #fff;">모두의연구소</div>
         </div>
     </div>
 </section>
@@ -720,7 +920,7 @@
 
         <div class="form-card">
             <span class="form-badge">무료 참가</span>
-            <div class="form-title">AI 유저가 되는 법 — 웨비나</div>
+            <div class="form-title">비개발자의 AI 100% 사용을 위한 학습 안내 — 웨비나</div>
             <p class="form-subtitle">등록 즉시 확인 메일 · 일시 추후 공지 · 프리워킹 멤버 특별 혜택</p>
 
             <!--
@@ -735,7 +935,7 @@
                 └─────────────────────────────────────────────┘
             -->
             <iframe
-                data-tally-src="https://tally.so/embed/YOUR_FORM_ID?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                data-tally-src="https://tally.so/embed/RGvrvQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
                 loading="lazy"
                 width="100%"
                 height="500"
@@ -768,7 +968,7 @@
             <!-- Fallback shown until Tally form ID is set -->
             <noscript>
                 <div class="tally-fallback">
-                    <p>폼이 로드되지 않으면 <a href="https://tally.so/r/YOUR_FORM_ID" target="_blank">여기를 클릭</a>해 등록하세요.</p>
+                    <p>폼이 로드되지 않으면 <a href="https://tally.so/r/RGvrvQ" target="_blank">여기를 클릭</a>해 등록하세요.</p>
                 </div>
             </noscript>
         </div>
@@ -779,9 +979,84 @@
 <!-- ══════════════════════════════
      FOOTER
 ══════════════════════════════ -->
-<div class="roadmap-note">
-    시간이 충분하다면 — <a href="#">무료 로드맵으로 직접 따라가셔도 됩니다</a>
-</div>
-
 <footer>
-    <p>© 2026 Cherry in the Haystack × 프리워킹 · 프리워커를 위한 진짜 AI 학습법 · hello@example
+    상호: 솔테티 | 대표자: 정한결 | 사업자등록번호: 336-06-02941 | 주소: 서울특별시 마포구 독막로 266 | 이메일: hkjeong@solteti.site | 개인정보보호책임자: 정한결
+</footer>
+
+<!-- Carousel Script -->
+<script>
+(function() {
+    const track = document.getElementById('carouselTrack');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const items = Array.from(track.querySelectorAll('.carousel-item'));
+    const originalCount = items.length;
+    let currentIndex = 0;
+
+    function getItemsPerView() {
+        if (window.innerWidth < 768) {
+            return 2;
+        }
+        return 4;
+    }
+
+    // Clone first few items and append to end for infinite scroll
+    const itemsPerView = getItemsPerView();
+    const clonesToAppend = Math.min(itemsPerView + 1, originalCount);
+    for (let i = 0; i < clonesToAppend; i++) {
+        const clone = items[i].cloneNode(true);
+        track.appendChild(clone);
+    }
+
+    function updateCarousel() {
+        const allItems = track.querySelectorAll('.carousel-item');
+        const itemWidth = allItems[0].offsetWidth + 20; // width + gap
+
+        track.style.transition = 'transform 0.5s ease-out';
+        track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+
+        // Disable prev button only at the very start
+        prevBtn.disabled = currentIndex === 0;
+    }
+
+    function handleTransitionEnd() {
+        const allItems = track.querySelectorAll('.carousel-item');
+        const itemsPerView = getItemsPerView();
+
+        // If we've scrolled into the cloned section, jump back to the original
+        if (currentIndex >= originalCount) {
+            track.style.transition = 'none';
+            currentIndex = currentIndex - originalCount;
+            const itemWidth = allItems[0].offsetWidth + 20;
+            track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+        }
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex++;
+        updateCarousel();
+    });
+
+    track.addEventListener('transitionend', handleTransitionEnd);
+
+    window.addEventListener('resize', () => {
+        // Recalculate on resize
+        updateCarousel();
+    });
+
+    updateCarousel();
+})();
+</script>
+
+</body>
+</html>
